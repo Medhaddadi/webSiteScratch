@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/fooder.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+<header>
+    <div class="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Submit Application</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+    <div class="logo">
+        <img src="../images/UiTM_Universiti_Teknologi_MARA_logo.png" alt="logo">
+    </div>
+</header>
+<div class="register-container">
+    <form>
+        <h2>Register</h2>
+        <input type="text" placeholder="Full Name" required name="full-name" id="fullName"/>
+        <div id="full-name-error" class="error"></div>
+        <input type="email" placeholder="Email" required name="email" id="email"/>
+        <div id="email-error" class="error"></div>
+        <input type="password" placeholder="Password" required name="password" id="password"/>
+
+        <div id="password-error" class="error"></div>
+        <input type="tel" placeholder="Contact Number" required name="contact-number" id="contactNumber"/>
+        <div id="contact-number-error" class="error"></div>
+        <div>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <div id="genderError" class="error"></div>
+        </div>
+        <br>
+        <div id="register-btns">
+            <button type="reset" id="reset_btn" onclick="clearInput()">Reset</button>
+            <button type="submit" id="register-btn" onclick="storeUser()">Register</button>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <div class="container">
+        <p>BAHAGIAN HAL EHWAL PELAJAR Universiti Tenologi MARA
+        <p>
+        <p> Cawangan Perlis Kampus Arau</p>
+        <p>Contact Number: 04-988 2402</p>
+    </div>
+</footer>
+<script>
+
+    function validateEmail(value) {
+        var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+        return emailRegex.test(value);
+    }
+
+    function validatePassword(value) {
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        //means at least 8 characters, at least one uppercase letter, one lowercase letter and one number
+        return passwordRegex.test(value);
+    }
+
+    function validateContactNumber(value) {
+        var contactNumberRegex = /^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/;
+        return contactNumberRegex.test(value);
+    }
+
+    //when the user writes in the input field we check if the field is correct
+    function checkInput(input) {
+        var value = input.value;
+        var name = input.name;
+        var error = document.getElementById(name + "-error");
+        if (value === "") {
+            error.innerHTML = "Please fill in your " + name;
+            error.style.display = "block";
+        } else if (name === "email") {
+            if (!validateEmail(value)) {
+                error.innerHTML = "Please enter a valid email address";
+                error.style.display = "block";
+            } else {
+                error.style.display = "none";
+            }
+        } else if (name === "password") {
+            if (!validatePassword(value)) {
+                error.innerHTML = "Please enter a valid password: means at least 8 characters, at least one uppercase letter, one lowercase letter and one number";
+                error.style.display = "block";
+            } else {
+                error.style.display = "none";
+            }
+        } else {
+            error.style.display = "none";
+        }
+    }
+
+    //validate the gender input
+
+    //cehckinput function is called when the user writes in the input field
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("input", function () {
+            checkInput(this);
+        });
+    }
+
+    function storeUser() {
+        var fullName = document.getElementById("fullName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var contactNumber = document.getElementById("contactNumber").value;
+        var gender = document.getElementById("gender").value;
+        //if all the value not null
+        if (fullName === "" || email === "" || password === "" || contactNumber === "" || gender === "") {
+            alert("Please fill in all the fields");
+            return;
+        } else {
+            //if the email is not valid
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+            //if the password is not valid
+            if (!validatePassword(password)) {
+                alert("Please enter a valid password: means at least 8 characters, at least one uppercase letter, one lowercase letter and one number");
+                return;
+            }
+
+            var user = {
+                fullName: fullName,
+                email: email,
+                password: password,
+                contactNumber: contactNumber,
+                gender: gender
+            };
+            sessionStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
+            alert("Registration Successful");
+        }
+
+    }
+    function clearInput() {
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].value = "";
+        }
+    }
+    console.log(sessionStorage.getItem("user"));
+</script>
+</body>
+</html>

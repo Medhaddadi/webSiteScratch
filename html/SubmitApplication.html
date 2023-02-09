@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Application</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/fooder.css">
+    <link rel="stylesheet" href="../css/SubmitApplication.css">
+</head>
+<body>
+<header>
+    <div class="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Submit Application</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+    <div class="logo">
+        <img src="../images/UiTM_Universiti_Teknologi_MARA_logo.png" alt="logo">
+    </div>
+</header>
+<main>
+    <form id="vehicleForm">
+        <div>
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required>
+            <div class="error" id="fullNameError"></div>
+        </div>
+        <div>
+            <label for="studentID">Student ID:</label>
+            <input type="text" id="studentID" name="studentID" required>
+            <div class="error" id="studentIDError"></div>
+        </div>
+        <div>
+            <label for="idNumber">ID Number:</label>
+            <input type="text" id="idNumber" name="idNumber" required>
+            <div class="error" id="idNumberError"></div>
+        </div>
+        <div>
+            <label for="programCode">Program Code:</label>
+            <input type="text" id="programCode" name="programCode" required>
+            <div class="error" id="programCodeError"></div>
+        </div>
+        <div>
+            <label for="semester">Semester:</label>
+            <input type="text" id="semester" name="semester" required>
+            <div class="error" id="semesterError"></div>
+        </div>
+        <div>
+            <label for="college">College:</label>
+            <input type="text" id="college" name="college" required>
+            <div class="error" id="collegeError"></div>
+        </div>
+        <div>
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" name="roomNumber" required>
+            <div class="error" id="roomNumberError"></div>
+        </div>
+        <div>
+            <label for="reasons">Reasons:</label>
+            <textarea id="reasons" name="reasons" required></textarea>
+            <div class="error" id="reasonsError"></div>
+        </div>
+        <div>
+            <label for="period">Period:</label>
+            <input type="text" id="period" name="period" required>
+            <div class="error" id="periodError"></div>
+        </div>
+        <div>
+            <label for="vehicleType">Vehicle Type:</label>
+            <select id="vehicleType" name="vehicleType" required>
+                <option value="">Select Vehicle Type</option>
+                <option value="compact">Compact</option>
+                <option value="hatchback">Hatchback</option>
+                <option value="sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="4x4">4x4</option>
+                <option value="MPV">MPV</option>
+            </select>
+            <div class="error" id="vehicleTypeError"></div>
+        </div>
+        <div>
+            <label for="vehicleBrand">Vehicle Brand:</label>
+            <input type="text" id="vehicleBrand" name="vehicleBrand" required>
+            <div class="error" id="vehicleBrandError"></div>
+        </div>
+        <div>
+            <label for="plateNumber">Plate Number:</label>
+            <input type="text" id="plateNumber" name="plateNumber" required>
+            <div class="error" id="plateNumberError"></div>
+        </div>
+        <div>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model" required>
+            <div class="error" id="modelError"></div>
+        </div>
+        <div>
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" required>
+            <div class="error" id="colorError"></div>
+        </div>
+        <div>
+            <label for="license">Update your license:</label>
+            License:</label>
+            <input type="file" id="license" name="license" accept="image/*" required>
+            <div class="error" id="licenseError"></div>
+        </div>
+
+        <div class="button">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</main>
+<footer>
+    <div class="container">
+        <p>BAHAGIAN HAL EHWAL PELAJAR Universiti Tenologi MARA
+        <p>
+        <p> Cawangan Perlis Kampus Arau</p>
+        <p>Contact Number: 04-988 2402</p>
+    </div>
+</footer>
+<script >
+    /*  function validateEmail(value) {
+        var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+        return emailRegex.test(value);
+    }
+
+    function validatePassword(value) {
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        //means at least 8 characters, at least one uppercase letter, one lowercase letter and one number
+        return passwordRegex.test(value);
+    }
+
+    function validateContactNumber(value) {
+        var contactNumberRegex = /^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/;
+        return contactNumberRegex.test(value);
+    }
+
+    //when the user writes in the input field we check if the field is correct
+    function checkInput(input) {
+        var value = input.value;
+        var name = input.name;
+        var error = document.getElementById(name + "-error");
+        if (value === "") {
+            error.innerHTML = "Please fill in your " + name;
+            error.style.display = "block";
+        } else if (name === "email") {
+            if (!validateEmail(value)) {
+                error.innerHTML = "Please enter a valid email address";
+                error.style.display = "block";
+            } else {
+                error.style.display = "none";
+            }
+        } else if (name === "password") {
+            if (!validatePassword(value)) {
+                error.innerHTML = "Please enter a valid password: means at least 8 characters, at least one uppercase letter, one lowercase letter and one number";
+                error.style.display = "block";
+            } else {
+                error.style.display = "none";
+            }
+        } else {
+            error.style.display = "none";
+        }
+    }
+
+    //validate the gender input
+
+    //cehckinput function is called when the user writes in the input field
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("input", function () {
+            checkInput(this);
+        });
+    }
+
+    function storeUser() {
+        var fullName = document.getElementById("fullName").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var contactNumber = document.getElementById("contactNumber").value;
+        var gender = document.getElementById("gender").value;
+        //if all the value not null
+        if (fullName === "" || email === "" || password === "" || contactNumber === "" || gender === "") {
+            alert("Please fill in all the fields");
+            return;
+        } else {
+            //if the email is not valid
+            if (!validateEmail(email)) {
+                alert("Please enter a valid email address");
+                return;
+            }
+            //if the password is not valid
+            if (!validatePassword(password)) {
+                alert("Please enter a valid password: means at least 8 characters, at least one uppercase letter, one lowercase letter and one number");
+                return;
+            }
+
+            var user = {
+                fullName: fullName,
+                email: email,
+                password: password,
+                contactNumber: contactNumber,
+                gender: gender
+            };
+            sessionStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
+            alert("Registration Successful");
+        }
+
+    }
+    function clearInput() {
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].value = "";
+        }
+    }
+    console.log(sessionStorage.getItem("user"));*/
+
+    //valite all the input fields
+
+    function validateInput(input) {
+        var value = input.value;
+        var name = input.name;
+        var error = document.getElementById(name + "Error");
+        if (value === "") {
+            error.innerHTML = "Please fill in your " + name;
+            error.style.display = "block";
+        } else {
+            error.style.display = "none";
+        }
+    }
+
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("input", function () {
+            validateInput(this);
+        });
+    }
+
+
+
+</script>
+</body>
+</html>

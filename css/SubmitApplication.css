@@ -1,0 +1,47 @@
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: lightgray;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px gray;
+    width: 30%;
+}
+#vehicleForm {
+    width: 500px;
+    margin: auto;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+    text-align: left;
+    padding: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+#vehicleForm label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+#vehicleForm input, #vehicleForm textarea, #vehicleForm select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+#vehicleForm .button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+#vehicleForm button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
