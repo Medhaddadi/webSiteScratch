@@ -44,7 +44,7 @@ function login() {
             //add variable to session storage
             localStorage.setItem("IsLoggedIn", true);
             //redirect to the home page
-            window.location.href = "../Home.html";
+            window.location.assign("../Home.html");
             alert("Login Successful");
         } else {
             alert("Incorrect Email or Password");
