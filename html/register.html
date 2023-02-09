@@ -11,9 +11,9 @@
 <header>
     <div class="menu">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Submit Application</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+
             <li><a href="#">Logout</a></li>
         </ul>
     </div>
@@ -147,6 +147,7 @@
             };
             sessionStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("IsLoggedIn", true);
             alert("Registration Successful");
         }
 
@@ -157,7 +158,6 @@
             inputs[i].value = "";
         }
     }
-    console.log(sessionStorage.getItem("user"));
 </script>
 </body>
 </html>
