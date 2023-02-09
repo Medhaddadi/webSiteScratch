@@ -210,10 +210,12 @@
         var licenseFile = license.files[0];
         var licenseName = licenseFile.name;
         car["license"] = "../license/" + licenseName;
-        var formData = new FormData();
-        formData.append("license", licenseFile);
-        formData.append("car", JSON.stringify(car));
-        //store car in local storage
+        const file = license.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function() {
+            localStorage.setItem("license", reader.result);
+        };
         localStorage.setItem("car", JSON.stringify(car));
         alert("Your car has been registered");
     }
