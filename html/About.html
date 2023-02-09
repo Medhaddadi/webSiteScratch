@@ -11,10 +11,11 @@
 <header>
     <div class="menu">
         <ul>
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="SubmitApplication.html">Submit Application</a></li>
+            <li><a href="../Home.html">Home</a></li>
+            <li id="submitApplication"><a href="SubmitApplication.html">Submit Application</a></li>
             <li><a href="About.html">About</a></li>
-            <li><a href="#">Logout</a></li>
+            <li id="login"><a href="login.html" >Login</a></li>
+            <li id="logout"><a href="#" onclick="logout()">Logout</a></li>
         </ul>
     </div>
     <div class="logo">
@@ -23,12 +24,13 @@
 </header>
 <main id="about">
     <h1>About the Vehicle Permission System</h1>
-    <p class="about">The system was built with the aim of making the process of applying for vehicle permission effective and easy for
+    <p class="about">The system was built with the aim of making the process of applying for vehicle permission
+        effective and easy for
         the students of UiTM Perlis. According to the rules of UiTM, students are required to apply for stickers for
         their vehicles. Every student who brings a vehicle to the college and resides in the college area or the hostel
         must get authorization from the TRH EP before applying for a vehicle sticker.</p>
 </main>
-</body>
+
 
 <footer>
     <div class="container">
@@ -38,6 +40,6 @@
         <p>Contact Number: 04-988 2402</p>
     </div>
 </footer>
-
+<script src="../js/Home.js"></script>
 </body>
 </html>

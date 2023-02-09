@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/fooder.css">
     <link rel="stylesheet" href="../css/login.css">
+
+
 </head>
 <body>
 <header>
     <div class="menu">
         <ul>
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="SubmitApplication.html">Submit Application</a></li>
+            <li><a href="../Home.html">Home</a></li>
+            <li id="submitApplication"><a href="SubmitApplication.html">Submit Application</a></li>
             <li><a href="About.html">About</a></li>
-            <li><a href="#">Logout</a></li>
+            <li id="login"><a href="login.html" >Login</a></li>
+            <li id="logout"><a href="#" onclick="logout()">Logout</a></li>
         </ul>
     </div>
     <div class="logo">
@@ -46,60 +49,7 @@
         <p>Contact Number: 04-988 2402</p>
     </div>
 </footer>
-<script>
-    console.log(localStorage.getItem("user"));
-    function clearInput() {
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-    }
-    function validateForm() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var emailError = document.getElementById("email-error");
-        var passwordError = document.getElementById("password-error");
-        var isValid = true;
-
-        if (!email) {
-            emailError.innerHTML = "Email is required";
-            isValid = false;
-        } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-            emailError.innerHTML = "Email is not valid";
-            isValid = false;
-        } else {
-            emailError.innerHTML = "";
-        }
-
-        if (!password) {
-            passwordError.innerHTML = "Password is required";
-            isValid = false;
-        } else if (password.length < 8) {
-            passwordError.innerHTML = "Password must be at least 8 characters long";
-            isValid = false;
-        } else {
-            passwordError.innerHTML = "";
-        }
-
-        return isValid;
-    }
-    //check the data when the user fields in the input
-    function login() {
-        var isValid = validateForm();
-        if (isValid) {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-            var storedUser = JSON.parse(localStorage.getItem("user"));
-            if (storedUser && storedUser.email === email && storedUser.password === password) {
-                //add variable to session storage
-                localStorage.setItem("IsLoggedIn", true);
-                alert("Login Successful");
-            } else {
-                alert("Incorrect Email or Password");
-            }
-        }else {
-            alert("Invalid Form");
-        }
-    }
-
-</script>
+<script src="../js/Home.js"></script>
+<script src="../js/login.js"></script>
 </body>
 </html>

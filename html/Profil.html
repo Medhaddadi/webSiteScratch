@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/fooder.css">
+    <link rel="stylesheet" href="../css/About.css">
+</head>
+<body>
+<header>
+    <div class="menu">
+        <ul>
+            <li><a href="../Home.html">Home</a></li>
+            <li><a href="SubmitApplication.html">Submit Application</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+    <div class="logo">
+        <img src="../images/UiTM_Universiti_Teknologi_MARA_logo.png" alt="logo">
+    </div>
+</header>
+<main id="profil">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h1>Profil</h1>
+                <p>BAHAGIAN HAL EHWAL PELAJAR Universiti Tenologi MARA
+                <p>
+                <p> Cawangan Perlis Kampus Arau</p>
+                <p>Contact Number: 04-988 2402</p>
+            </div>
+        </div>
+    </div>
+</main>
+<style>
+    #profil{
+        background-color: #779cea;
+        padding: 50px;
+    }
+
+    #profil h1{
+        color: white;
+    }
+
+    #profil p{
+        color: white;
+    }
+
+    #profil p:nth-child(2){
+        color: white;
+    }
+
+    #profil p:nth-child(3){
+        color: white;
+    }
+
+
+</style>
+<script>
+    var IsLoggedIn = localStorage.getItem("IsLoggedIn");
+    if(IsLoggedIn === "false"){
+        document.getElementById("login").style.display = "block";
+        document.getElementById("logout").style.display = "none";
+        document.getElementById("submitApplication").style.display = "none";
+    }
+    else{
+        document.getElementById("login").style.display = "none";
+        document.getElementById("logout").style.display = "block";
+        document.getElementById("submitApplication").style.display = "block";
+    }
+</script>
+<footer>
+    <div class="container">
+        <p>BAHAGIAN HAL EHWAL PELAJAR Universiti Tenologi MARA
+        <p>
+        <p> Cawangan Perlis Kampus Arau</p>
+        <p>Contact Number: 04-988 2402</p>
+    </div>
+</footer>
+</body>
+</html>
