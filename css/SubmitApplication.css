@@ -7,6 +7,10 @@ form {
     box-shadow: 2px 2px 10px gray;
     width: 30%;
 }
+.error {
+    color: red;
+    font-size: 12px;
+}
 #vehicleForm {
     width: 500px;
     margin: auto;

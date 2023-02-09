@@ -1,0 +1,19 @@
+p {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: justify;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1em;
+}
+#about{
+    background-color: #f2f2f2;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px gray;
+    //content center
+    display: flex;
+
+}

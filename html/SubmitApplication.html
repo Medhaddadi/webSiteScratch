@@ -109,7 +109,7 @@
         </div>
 
         <div class="button">
-            <button type="submit">Submit</button>
+            <button type="submit" id="submit" onclick="storeInput()">Submit</button>
         </div>
     </form>
 </main>
@@ -122,102 +122,6 @@
     </div>
 </footer>
 <script >
-    /*  function validateEmail(value) {
-        var emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-
-        return emailRegex.test(value);
-    }
-
-    function validatePassword(value) {
-        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-        //means at least 8 characters, at least one uppercase letter, one lowercase letter and one number
-        return passwordRegex.test(value);
-    }
-
-    function validateContactNumber(value) {
-        var contactNumberRegex = /^(\+?6?01)[0-46-9]-*[0-9]{7,8}$/;
-        return contactNumberRegex.test(value);
-    }
-
-    //when the user writes in the input field we check if the field is correct
-    function checkInput(input) {
-        var value = input.value;
-        var name = input.name;
-        var error = document.getElementById(name + "-error");
-        if (value === "") {
-            error.innerHTML = "Please fill in your " + name;
-            error.style.display = "block";
-        } else if (name === "email") {
-            if (!validateEmail(value)) {
-                error.innerHTML = "Please enter a valid email address";
-                error.style.display = "block";
-            } else {
-                error.style.display = "none";
-            }
-        } else if (name === "password") {
-            if (!validatePassword(value)) {
-                error.innerHTML = "Please enter a valid password: means at least 8 characters, at least one uppercase letter, one lowercase letter and one number";
-                error.style.display = "block";
-            } else {
-                error.style.display = "none";
-            }
-        } else {
-            error.style.display = "none";
-        }
-    }
-
-    //validate the gender input
-
-    //cehckinput function is called when the user writes in the input field
-    var inputs = document.getElementsByTagName("input");
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener("input", function () {
-            checkInput(this);
-        });
-    }
-
-    function storeUser() {
-        var fullName = document.getElementById("fullName").value;
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var contactNumber = document.getElementById("contactNumber").value;
-        var gender = document.getElementById("gender").value;
-        //if all the value not null
-        if (fullName === "" || email === "" || password === "" || contactNumber === "" || gender === "") {
-            alert("Please fill in all the fields");
-            return;
-        } else {
-            //if the email is not valid
-            if (!validateEmail(email)) {
-                alert("Please enter a valid email address");
-                return;
-            }
-            //if the password is not valid
-            if (!validatePassword(password)) {
-                alert("Please enter a valid password: means at least 8 characters, at least one uppercase letter, one lowercase letter and one number");
-                return;
-            }
-
-            var user = {
-                fullName: fullName,
-                email: email,
-                password: password,
-                contactNumber: contactNumber,
-                gender: gender
-            };
-            sessionStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("user", JSON.stringify(user));
-            alert("Registration Successful");
-        }
-
-    }
-    function clearInput() {
-        var inputs = document.getElementsByTagName("input");
-        for (var i = 0; i < inputs.length; i++) {
-            inputs[i].value = "";
-        }
-    }
-    console.log(sessionStorage.getItem("user"));*/
 
     //valite all the input fields
 
@@ -239,9 +143,80 @@
             validateInput(this);
         });
     }
+    //get the select element
+    var select = document.getElementById("vehicleType");
+    select.addEventListener("change", function () {
+        if (select.value === "") {
+            var error = document.getElementById("vehicleTypeError");
+            error.innerHTML = "Please select your vehicle type";
+            error.style.display = "block";
+        } else {
+            var error = document.getElementById("vehicleTypeError");
+            error.style.display = "none";
+        }
+    });
+    //get the textarea element
+    var textarea = document.getElementById("reasons");
+    textarea.addEventListener("input", function () {
+        var value = textarea.value;
+        var error = document.getElementById("reasonsError");
+        if (value === "") {
+            error.innerHTML = "Please fill in your reasons";
+            error.style.display = "block";
+        } else {
+            error.style.display = "none";
+        }
+    });
 
+    //get license
+    var license = document.getElementById("license");
+    license.addEventListener("change", function () {
+        var value = license.value;
+        var error = document.getElementById("licenseError");
+        if (value === "") {
+            error.innerHTML = "Please upload your license";
+            error.style.display = "block";
+        } else {
+            error.style.display = "none";
+        }
+    });
+    //store all the input fields
+    function storeInput() {
+        var car = {};
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            var name = input.name;
+            var value = input.value;
+            car[name] = value;
+        }
+        var textareas = document.getElementsByTagName("textarea");
+        for (var i = 0; i < textareas.length; i++) {
+            var textarea = textareas[i];
+            var name = textarea.name;
+            var value = textarea.value;
+            car[name] = value;
+        }
+        var selects = document.getElementsByTagName("select");
+        for (var i = 0; i < selects.length; i++) {
+            var select = selects[i];
+            var name = select.name;
+            var value = select.value;
+            car[name] = value;
+        }
 
-
+        //store the License file in a folder and store the path in the database
+        var license = document.getElementById("license");
+        var licenseFile = license.files[0];
+        var licenseName = licenseFile.name;
+        car["license"] = "../license/" + licenseName;
+        var formData = new FormData();
+        formData.append("license", licenseFile);
+        formData.append("car", JSON.stringify(car));
+        //store car in local storage
+        localStorage.setItem("car", JSON.stringify(car));
+        alert("Your car has been registered");
+    }
 </script>
 </body>
 </html>
